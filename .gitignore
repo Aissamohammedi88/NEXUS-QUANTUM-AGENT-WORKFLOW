@@ -1,18 +1,350 @@
-# Build and Release Folders
-bin-debug/
-bin-release/
-[Oo]bj/
-[Bb]in/
+# ═══════════════════════════════════════════════════════════════════════════
+# .gitignore — NEXUS / NEMOTRON
+# Ordre volontaire : sécurité → langages → artefacts → outillage → OS
+# ═══════════════════════════════════════════════════════════════════════════
 
-# Other files and folders
-.settings/
+# ───────────────────────────────────────────────────────────────────────────
+# 1. SECRETS & IDENTIFIANTS  (priorité absolue — à ne jamais committer)
+# ───────────────────────────────────────────────────────────────────────────
+.env
+.env.*
+!.env.example
+*.env.local
+secrets.yml
+secrets.yaml
+credentials.json
+service-account*.json
+kaggle.json
+.kaggle/
+config.toml
+*.pem
+*.key
+*.p12
+*.pfx
+*.keystore
+*.jks
+.npmrc
+.pypirc
+.netrc
+auth.json
+token.json
+*.token
 
-# Executables
-*.swf
-*.air
-*.ipa
-*.apk
+# ───────────────────────────────────────────────────────────────────────────
+# 2. PYTHON
+# ───────────────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.pyd
+*.egg
+*.egg-info/
+.eggs/
+build/
+develop-eggs/
+dist/
+downloads/
+sdist/
+wheels/
+share/python-wheels/
+pip-wheel-metadata/
+MANIFEST
+.installed.cfg
+lib64/
+parts/
+var/
+*.manifest
+*.spec
 
-# Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
-# should NOT be excluded as they contain compiler settings and other important
-# information for Eclipse / Flash Builder.
+# Environnements virtuels
+.venv/
+venv/
+ENV/
+env/
+.conda/
+.python-version
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Outils de test & qualité
+.pytest_cache/
+.tox/
+.nox/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+.cache/
+.hypothesis/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.ruff_cache/
+.pytype/
+profile_default/
+ipython_config.py
+
+# ───────────────────────────────────────────────────────────────────────────
+# 3. NOTEBOOKS & SCIENCE DES DONNÉES
+# ───────────────────────────────────────────────────────────────────────────
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+profile_default/
+.spyderproject
+.spyproject
+.ropeproject
+*.sage.py
+.keras/
+keras/
+
+# ───────────────────────────────────────────────────────────────────────────
+# 4. MODÈLES & ARTEFACTS ML  (volumineux, non versionnables)
+# ───────────────────────────────────────────────────────────────────────────
+models/
+checkpoints/
+weights/
+adapters/
+lora/
+*.safetensors
+*.ckpt
+*.pt
+*.pth
+*.bin
+*.gguf
+*.ggml
+*.onnx
+*.pb
+*.h5
+*.msgpack
+*.tflite
+*.joblib
+*.pkl
+*.pickle
+*.npy
+*.npz
+*.parquet
+*.arrow
+*.feather
+*.hdf5
+*.mat
+pytorch_model*.bin
+tf_model*.h5
+flax_model*.msgpack
+training_args.bin
+optimizer.pt
+scheduler.pt
+rng_state.pth
+trainer_state.json
+wandb/
+runs/
+mlruns/
+lightning_logs/
+tensorboard/
+outputs/
+output/
+
+# ───────────────────────────────────────────────────────────────────────────
+# 5. DONNÉES & SOUMISSIONS
+# ───────────────────────────────────────────────────────────────────────────
+data/
+datasets/
+dataset/
+*.csv
+*.tsv
+*.jsonl
+*.sqlite
+*.sqlite3
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+submission.zip
+submission*.csv
+predictions/
+results/
+artifacts/
+!tests/**/fixtures/*.csv
+!examples/**/*.csv
+
+# ───────────────────────────────────────────────────────────────────────────
+# 6. SPÉCIFIQUE NEXUS BUILD OMNIVERSAL
+# ───────────────────────────────────────────────────────────────────────────
+.nexus_build/
+.nexus_nemotron.log
+.nexus_launch.log
+nexus.pid
+*.pid
+builds.db
+cache/
+logs/
+tmp/
+*.log
+*.sarif
+*.sarif.json
+decision/
+fixes/
+*.bak
+*.orig
+*.rej
+*.swp
+*.swo
+*~
+
+# ───────────────────────────────────────────────────────────────────────────
+# 7. KAGGLE
+# ───────────────────────────────────────────────────────────────────────────
+/kaggle/
+/kaggle/working/
+/kaggle/input/
+/kaggle/cache/
+.kaggle/
+kernel-metadata.json
+dataset-metadata.json
+*.kaggle
+
+# ───────────────────────────────────────────────────────────────────────────
+# 8. NODE / JAVASCRIPT / TYPESCRIPT
+# ───────────────────────────────────────────────────────────────────────────
+node_modules/
+.npm/
+.yarn/
+.pnpm-store/
+.pnp
+.pnp.js
+.yarn-integrity
+.npmrc
+coverage/
+.nyc_output/
+.next/
+.nuxt/
+.output/
+.turbo/
+.parcel-cache/
+.eslintcache
+.stylelintcache
+*.tsbuildinfo
+jspm_packages/
+bower_components/
+dist/
+build/
+out/
+
+# ───────────────────────────────────────────────────────────────────────────
+# 9. RUST / GO / JAVA / AUTRES
+# ───────────────────────────────────────────────────────────────────────────
+# Rust
+target/
+Cargo.lock.bak
+
+# Go
+vendor/
+*.test
+*.out
+/go/pkg/
+
+# Java / Kotlin / Scala
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+hs_err_pid*
+replay_pid*
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!.mvn/wrapper/maven-wrapper.jar
+.m2/
+.sbt/
+target/
+project/target/
+
+# PHP / Elixir / Dart
+vendor/
+_build/
+deps/
+.pub-cache/
+.packages
+.flutter-plugins
+
+# ───────────────────────────────────────────────────────────────────────────
+# 10. DOCKER & INFRA
+# ───────────────────────────────────────────────────────────────────────────
+.dockerignore
+docker-compose.override.yml
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+*.tfvars
+!*.tfvars.example
+ansible/retry/
+*.retry
+
+# ───────────────────────────────────────────────────────────────────────────
+# 11. ÉDITEURS & IDE
+# ───────────────────────────────────────────────────────────────────────────
+.vscode/
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/launch.json
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+.fleet/
+*.sublime-project
+*.sublime-workspace
+.atom/
+.abproject
+.history/
+*.code-workspace
+
+# ───────────────────────────────────────────────────────────────────────────
+# 12. SYSTÈMES D'EXPLOITATION
+# ───────────────────────────────────────────────────────────────────────────
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+.Spotlight-V100
+.Trashes
+.fseventsd
+.TemporaryItems
+.apdisk
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# Linux
+*~
+.directory
+.Trash-*
+.nfs*
+
+# ───────────────────────────────────────────────────────────────────────────
+# 13. DIVERS
+# ───────────────────────────────────────────────────────────────────────────
+*.tmp
+*.temp
+*.crdownload
+*.part
+*.lock
+!poetry.lock
+!uv.lock
+!package-lock.json
+!yarn.lock
+!pnpm-lock.yaml
+!Cargo.lock
+!Gemfile.lock
+!composer.lock
+.crdownload
+.nfs*
